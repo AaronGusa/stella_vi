@@ -1,0 +1,20 @@
+<p>businesses-db works!</p>
+<div class="card_cont">
+    <div *ngFor="let b of business">
+        <div class="card">
+            <h2>{{ b.bus_name }}</h2>
+            <hr>
+            <h3>{{ b.discipline }}</h3>
+            <p>{{ b.phone }}</p>
+            <p>{{ b.email }}</p>
+            <p>{{ b.website }}</p>
+            <p>Rating: {{ b.rating }} <span style="border-radius: 50%; background-color: darkslategrey;">🌟</span></p>
+            <div class="card" style="color: white; background-color: darkslategrey;">
+                <p>{{ b.address.street }}</p>
+                <p>{{ b.address.city }} </p>
+                <p>{{ b.address.state }}</p>
+                <p>{{ b.address.zip }}</p>
+            </div>
+        </div>
+    </div>
+</div>

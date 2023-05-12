@@ -13,12 +13,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { ServicesComponent } from './services/services.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserDbComponent } from './admin/user-db/user-db.component';
+import { ReviewsDbComponent } from './admin/reviews-db/reviews-db.component';
+import { BusinessesDbComponent } from './admin/businesses-db/businesses-db.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ServicesComponent
+    ServicesComponent,
+    AdminComponent,
+    UserDbComponent,
+    ReviewsDbComponent,
+    BusinessesDbComponent,
   ],
   imports: [
     BrowserModule,

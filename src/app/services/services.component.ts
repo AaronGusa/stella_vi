@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Service } from '../../models/service.model';
-import { Category } from '../../models/category.model';
+import { Service } from '../../models/services/service.model';
+import { Category } from '../../models/services/category.model';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -10,7 +10,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit {
-  categories: Category[] = [];
+  s_categories: Category[] = [];
   services: Service[] = [];
   
   constructor(private http: HttpClient) {}
@@ -25,9 +25,9 @@ export class ServicesComponent implements OnInit {
       take(1) // Only emit the first value and then complete
     ).subscribe({
       next: (data) => {
-        this.categories = data;
+        this.s_categories = data;
         this.services = data[0].services; // Assign the services of the first category to the services property
-        console.log(this.categories);
+        console.log(this.s_categories);
       },
       error: (err) => console.error(err)
     });
