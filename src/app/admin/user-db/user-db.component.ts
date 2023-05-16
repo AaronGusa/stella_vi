@@ -21,7 +21,7 @@ export class UserDbComponent implements OnInit {
   }
 
   getBusiness() {
-    this.http.get<User[]>("http://localhost:3000/businesses").pipe(
+    this.http.get<User[]>("http://localhost:3000/users").pipe(
       take(1) // Only emit the first value and then complete
     ).subscribe({
       next: (data) => {

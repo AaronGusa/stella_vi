@@ -1,1 +1,20 @@
 <p>user-db works!</p>
+<div class="card_cont">
+    <div *ngFor="let u of userProf">
+        <div class="card">
+            <h2>{{ u.fname }} {{ u.lname }}</h2>
+            <hr>
+            <hr>
+            <h3>username: {{ u.username }}</h3>
+            <p>{{ u.phone }}</p>
+            <p>{{ u.email }}</p>
+            <p>{{ u.website }}</p>
+            <div class="card" style="color: white; background-color: darkslategrey;">
+                <p>{{ u.address }}</p>
+                <p>{{ u.town }}, UT </p>
+                <p>{{ u.country }}</p>
+                <p>{{ u.zip_code }}</p>
+            </div>
+        </div>
+    </div>
+</div>

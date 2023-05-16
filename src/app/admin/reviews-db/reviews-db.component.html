@@ -1,1 +1,36 @@
 <p>reviews-db works!</p>
+<!-- <div>
+    <div *ngFor="let r of reviews">
+        <h2>{{ r. }}</h2>
+    </div>
+</div> -->
+
+<!-- <div *ngFor="let year of reviews">
+    <div *ngFor="let month of year">
+      <div *ngFor="let rev_number of month">
+        <div *ngFor="let review of rev_number">
+           Access the properties within the 'review' object 
+          <p>Review ID: {{ review.rev_id }}</p>
+          <p>Business ID: {{ review.bus_id }}</p>
+          <p>Service: {{ review.service }}</p>
+          <p>Date: {{ review.date }}</p>
+          <p>Rate: {{ review.rate }}</p>
+          <p>User ID: {{ review.u_id }}</p>
+          <p>Review Content: {{ review.review_content }}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
+  <div *ngFor="let review of reviews">
+    <hr>
+    <p>Review ID: {{ review.rev_id }}</p>
+    <p>Business ID: {{ review.bus_id }}</p>
+    <p>Service: {{ review.service }}</p>
+    <p>Date: {{ review.date }}</p>
+    <p>Rate: {{ review.rate }}</p>
+    <p>User ID: {{ review.u_id }}</p>
+    <p>Review Content: {{ review.review_content }}</p>
+    <hr>
+  </div>
+  
