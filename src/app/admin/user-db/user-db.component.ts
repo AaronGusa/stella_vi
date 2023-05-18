@@ -28,7 +28,7 @@ export class UserDbComponent implements OnInit, OnDestroy {
       next: (data) => {
         this.user = data;
         this.userProf = this.user.map(user => user.u_prof);
-        console.log(this.user);
+        //console.log(this.user);
       },
       error: (err) => console.error(err)
     });

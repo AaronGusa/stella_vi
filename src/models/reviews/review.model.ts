@@ -1,9 +1,7 @@
 export interface ReviewModel {
-    year: [
-        month: [
+    bus_id: [
             rev_number: [
                 rev_id: any,
-                bus_id: any,
                 service: any,
                 date: any,
                 rate: any,
@@ -11,5 +9,4 @@ export interface ReviewModel {
                 review_content: any
             ]
         ]
-    ]
 };

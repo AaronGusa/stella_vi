@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MiddlewareService } from 'middle/services/stella_services';
 import { Subscription } from 'rxjs';
 
@@ -10,8 +10,13 @@ import { ReviewModel } from 'src/models/reviews/review.model';
   templateUrl: './reviews-db.component.html',
   styleUrls: ['./reviews-db.component.css']
 })
-export class ReviewsDbComponent implements OnInit {
-  reviews: ReviewModel[] = [];
+export class ReviewsDbComponent implements OnInit, OnDestroy {
+  reviews = [];
+  data = [];
+  businesses = [];
+  bus_reviews = [];
+
+
   rev_sub: Subscription;
     
   constructor(private http: HttpClient,
@@ -19,18 +24,25 @@ export class ReviewsDbComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('We got REVIEWS component!');
-    this.rev_sub = this.mw.getReviews().subscribe(
-      (data) => {
-        this.reviews = data;
-        console.log(this.reviews);
-      },
-      (error) => {
-        console.error(error);
+    try{
+      this.rev_sub = this.mw.getReviews().subscribe(
+        (data) => {
+          this.reviews = data;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+      } catch {
+        console.log('Error');
       }
-    );
   }
 
-
+  ngOnDestroy(): void {
+    this.rev_sub.unsubscribe();
+  }
+  
+  
 
   // getReviews() {
   //   // this.http.get<ReviewModel[]>("http://localhost:3000/reviews").pipe(

@@ -24,6 +24,15 @@ export class MiddlewareService {
     
     constructor(private http: HttpClient) {}
 
+    convertObjectToArray(obj) {
+        return Object.keys(obj).map((key) => {
+          if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+            return this.convertObjectToArray(obj[key]);
+          }
+          return obj[key];
+        });
+    }
+
     //BusinessesDB
 
     getBusiness() {
@@ -44,31 +53,73 @@ export class MiddlewareService {
 
     getReviews(): Observable<any[]> {
         return this.http.get<any[]>("http://localhost:3000/reviews").pipe(
-          map((data) => {
-            return this.flattenReviews(data);
+          map(reviews => {
+            console.log('REVIEW RETURN');
+            console.log(reviews);
+      
+            const modifiedData = reviews.map(entry => {
+              const reviewsArray = Object.values(entry.reviews);
+              return { ...entry, reviews: reviewsArray };
+            });
+      
+            console.log(modifiedData);
+      
+            return modifiedData;
           })
         );
       }
+        // const nestedObj = {
+        //     bus_id: 'value1',
+        //     key2: {
+        //       nestedKey1: 'nestedValue1',
+        //       nestedKey2: {
+        //         deepNestedKey: 'deepNestedValue',
+        //       },
+        //     },
+        //     key3: 'value3',
+        //   };
+          
+        //   const resultArray = convertObjectToArray(nestedObj);
+        //   console.log(resultArray);
+        
+        
+        
+        // .pipe(
+        //     map(reviews => {
+        //     const flattenedReviews = reviews.flatMap(year => {
+        //         return year.data.flatMap(obj => Object.values(obj));
+        //     });
+        //     console.log(flattenedReviews);
+        //     return flattenedReviews;
+        //     })
+        // );
+    
+    //     .pipe(
+    //       map((data) => {
+    //         return this.flattenReviews(data);
+    //       })
+    //     );
+    //   }
 
-      flattenReviews(data: any[]): ReviewModel[] {
-        const flattenedReviews: ReviewModel[] = [];
-        data.forEach(item => {
-          if (typeof item === 'object') { // Only process valid review objects
-            const yearKeys = Object.keys(item);
-            yearKeys.forEach(yearKey => {
-              const monthKeys = Object.keys(item[yearKey]);
-              monthKeys.forEach(monthKey => {
-                const reviews = item[yearKey][monthKey];
-                if (Array.isArray(reviews)) { // Only process valid review arrays
-                  flattenedReviews.push(...reviews);
-                }
-              });
-            });
-          }
-        });
-        console.log('OOPO!')
-        return flattenedReviews;
-      }
+    //   flattenReviews(data: any[]): ReviewModel[] {
+    //     const flattenedReviews: ReviewModel[] = [];
+    //     data.forEach(item => {
+    //       if (typeof item === 'object') { // Only process valid review objects
+    //         const yearKeys = Object.keys(item);
+    //         yearKeys.forEach(yearKey => {
+    //           const monthKeys = Object.keys(item[yearKey]);
+    //           monthKeys.forEach(monthKey => {
+    //             const reviews = item[yearKey][monthKey];
+    //             if (Array.isArray(reviews)) { // Only process valid review arrays
+    //               flattenedReviews.push(...reviews);
+    //             }
+    //           });
+    //         });
+    //       }
+    //     });
+        //console.log('OOPO!')
+        //return flattenedReviews;
+    //  }
 
     //UsersDB
 

@@ -21,18 +21,22 @@
       </div>
     </div>
   </div> -->
-  <div  class="card_cont" >
-  <div class="card_wide" *ngFor="let review of reviews">
-
-        <hr>
-        <p>Review ID: {{ review.rev_id }}</p>
-        <p>Business ID: {{ review.bus_id }}</p>
-        <p>Service: {{ review.service }}</p>
-        <p>Date: {{ review.date }}</p>
-        <p>Rate: {{ review.rate }}</p>
-        <p>User ID: {{ review.u_id }}</p>
-        <p>Review Content: {{ review.review_content }}</p>
-        <hr>
-
+  <div  class="card_cont">
+  <div class="card_cont" *ngFor="let review of reviews">
+    <p>Business ID: {{ review.bus_id }}</p>
+    
+    <div *ngFor="let r of review.reviews; let i = index">
+        <div class="card">
+            <hr>
+            <p>Review ID: {{ i + 1 }}</p>
+            
+            <!-- <p>Service: {{ review.service }}</p> -->
+            <p>Date: {{ r.date }}</p>
+            <p>Rate: {{ r.rating }}</p>
+            <p>User ID: {{ r.u_id }}</p>
+            <h4>{{ r.rev_content }}</h4>
+            <hr>
+        </div>
+    </div>
   </div>
   </div>
