@@ -1,12 +1,14 @@
 export interface ReviewModel {
-    bus_id: [
+    bus_id: any,
+    reviews: [
             rev_number: [
-                rev_id: any,
-                service: any,
+                u_id: number,
+                cat_id: any,
+                s_id: any,
                 date: any,
-                rate: any,
+                rating: number,
                 u_id: any,
-                review_content: any
+                rev_content: any
             ]
         ]
 };

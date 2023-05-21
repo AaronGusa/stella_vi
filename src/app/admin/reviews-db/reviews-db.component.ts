@@ -34,7 +34,7 @@ export class ReviewsDbComponent implements OnInit, OnDestroy {
         }
       );
       } catch {
-        console.log('Error');
+        console.log('Error: Reviews need to be looked at!');
       }
   }
 
